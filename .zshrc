@@ -53,7 +53,8 @@ fi
 
 eval $(dircolors -b ~/.dir_colors)
 
-alias ls="ls --color"#--group-directories-first"
+# ls - group-directories-first
+alias ls="ls --color"
 alias screen="screen -aAU"
 alias l='ls'
 alias rm="rm -Iv"
@@ -77,7 +78,7 @@ function title() {
 
   case $TERM in
   screen)
-    print -Pn "\ek$a:$3\e\\"      # screen title (in ^A")
+    print -Pn "\ek$a:$3\e\\"      # screen title 
     ;;
   xterm*|rxvt)
     print -Pn "\e]2;$2 | $a:$3\a" # plain xterm title
