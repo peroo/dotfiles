@@ -4,6 +4,8 @@
 # functions, options, key bindings, etc.
 #
 
+export PATH="$PATH:$HOME/bin"
+
 # colorful listings
 zmodload -i zsh/complist
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
