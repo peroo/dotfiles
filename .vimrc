@@ -12,7 +12,26 @@ syntax on
 
 set nocp
 filetype plugin on
+set ofu=syntaxcomplete#Complete
+
+" configure tags - add additional tags here or comment out not-used ones
+set tags=./tags,./../tags,./*/tags
+set tags+=~/.vim/tags/cpp
+
 map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+
+" OmniCppComplete
+let OmniCpp_NamespaceSearch = 1
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_ShowAccess = 1
+let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+" automatically open and close the popup menu / preview window
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+set completeopt=menuone,menu,longest,preview
 
 function! SuperCleverTab()
     if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
@@ -53,4 +72,5 @@ let g:tex_flavor='latex'
 
 set scrolloff=999
 imap jj <ESC>
+nmap <F4> :TlistToggle<cr>
 set incsearch
