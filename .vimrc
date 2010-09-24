@@ -1,53 +1,63 @@
+set nocompatible 
+set modelines=0
+filetype plugin indent on
+syntax on
+colorscheme xoria256 
+
 set expandtab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 set autoindent
+set encoding=utf8
 set fileencoding=utf8
 set termencoding=utf8
 set number
 set smartindent
-colorscheme xoria256 
-syntax on
+set showmode " Shows mode at bottom
+set showcmd "Show line count in visiual mode?
+set wildmenu
+set wildmode=list:longest " Bash style autocomplete
+set ttyfast " Fast terminal, send all data
+set ruler
+set backspace=indent,eol,start
+set laststatus=2
+set hidden
 
-set nocp
-filetype plugin on
-set ofu=syntaxcomplete#Complete
+let mapleader = ","
+
+" Perl style regexp instead of vim
+nnoremap / /\v
+vnoremap / /\v
+set ignorecase "ignore case when searching
+set smartcase "use case if not all lowercase
+set gdefault "all substitusions are global
+" Incremental search
+set incsearch 
+set showmatch
+set hlsearch
+" Clear search highlight
+nnoremap <leader><space> :noh<cr>
+" Use tab to match bracket pairs instead of %
+nnoremap <tab> %
+vnoremap <tab> %
+
+
+" toggle between number and relative number on ,l
+nnoremap <leader>l :call ToggleRelativeAbsoluteNumber()<CR>
+function! ToggleRelativeAbsoluteNumber()
+  if &number
+    set relativenumber
+  else
+    set number
+  endif
+endfunction
 
 " configure tags - add additional tags here or comment out not-used ones
 set tags=./tags,./../tags,./*/tags
 set tags+=~/.vim/tags/cpp
 
 map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-
-" OmniCppComplete
-let OmniCpp_NamespaceSearch = 1
-let OmniCpp_GlobalScopeSearch = 1
-let OmniCpp_ShowAccess = 1
-let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-" automatically open and close the popup menu / preview window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-set completeopt=menuone,menu,longest,preview
-
-function! SuperCleverTab()
-    if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-        return "\<Tab>"
-    else
-        if &omnifunc != ''
-            return "\<C-X>\<C-O>"
-        elseif &dictionary != ''
-            return "\<C-K>"
-        else
-            return "\<C-N>"
-        endif
-    endif
-endfunction
-
-inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 
 " REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
 filetype plugin on
@@ -72,5 +82,17 @@ let g:tex_flavor='latex'
 
 set scrolloff=999
 imap jj <ESC>
-nmap <F4> :TlistToggle<cr>
-set incsearch
+nnoremap <leader>f :NERDTreeToggle<cr>
+inoremap  <Up>     <NOP>
+inoremap  <Down>   <NOP>
+inoremap  <Left>   <NOP>
+inoremap  <Right>  <NOP>
+noremap   <Up>     <NOP>
+noremap   <Down>   <NOP>
+noremap   <Left>   <NOP>
+noremap   <Right>  <NOP>
+" Navigate screen lines instead of file lines
+nnoremap j gj
+nnoremap k gk
+
+nnoremap <leader>a :Ack
