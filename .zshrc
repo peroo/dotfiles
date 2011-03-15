@@ -57,7 +57,7 @@ eval $(dircolors -b ~/.dir_colors)
 alias ls="ls --color"
 alias screen="screen -aAU"
 alias l='ls'
-alias rm="rm -Iv"
+alias rm="rm -iv"
 alias 'cd..=cd ..'
 
 
