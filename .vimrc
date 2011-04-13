@@ -4,6 +4,7 @@ filetype plugin indent on
 syntax on
 colorscheme xoria256 
 
+set number
 set expandtab
 set shiftwidth=4
 set softtabstop=4
@@ -12,7 +13,6 @@ set autoindent
 set encoding=utf8
 set fileencoding=utf8
 set termencoding=utf8
-set number
 set smartindent
 set showmode " Shows mode at bottom
 set showcmd "Show line count in visiual mode?
@@ -47,8 +47,11 @@ vnoremap <tab> %
 nnoremap <leader>l :call ToggleRelativeAbsoluteNumber()<CR>
 function! ToggleRelativeAbsoluteNumber()
   if &number
-    set relativenumber
+    set number!
+    :RltvNmbr
+    "set relativenumber
   else
+    :RltvNmbr!
     set number
   endif
 endfunction
@@ -120,8 +123,8 @@ function! MyStatusLine(mode)
     return statusline
 endfunction
 
-au WinEnter * setlocal statusline=%!MyStatusLine('Enter')
-au WinLeave * setlocal statusline=%!MyStatusLine('Leave')
+"au WinEnter * setlocal statusline=%!MyStatusLine('Enter')
+"au WinLeave * setlocal statusline=%!MyStatusLine('Leave')
 set statusline=%!MyStatusLine('Enter')
 
 function! InsertStatuslineColor(mode)
@@ -138,3 +141,5 @@ endfunction
 
 au InsertEnter * call InsertStatuslineColor(v:insertmode)
 au InsertLeave * hi StatColor guibg=#95e454 guifg=black ctermbg=lightgreen ctermfg=black
+
+map <F4> :NERDTreeToggle<CR>
