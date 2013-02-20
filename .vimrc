@@ -145,3 +145,4 @@ au InsertLeave * hi StatColor guibg=#95e454 guifg=black ctermbg=lightgreen cterm
 map <F4> :NERDTreeToggle<CR>
 
 call pathogen#infect()
+let g:EasyMotion_leader_key = '<Leader>'
