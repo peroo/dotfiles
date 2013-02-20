@@ -1,4 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/usr/include/gstreamer-0.10'
 let g:netrw_dirhist_2='/home/peroo/raid/inc/Flac/Kaizers Orchestra/Maestro (bonus disc) (2005-10-24)'
+let g:netrw_dirhist_3='/home/peroo/.vim'
+let g:netrw_dirhist_4='/home/peroo/SABnzbd-0.7.3/sabnzbd'

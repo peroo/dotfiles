@@ -143,3 +143,5 @@ au InsertEnter * call InsertStatuslineColor(v:insertmode)
 au InsertLeave * hi StatColor guibg=#95e454 guifg=black ctermbg=lightgreen ctermfg=black
 
 map <F4> :NERDTreeToggle<CR>
+
+call pathogen#infect()

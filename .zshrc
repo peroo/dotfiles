@@ -60,6 +60,9 @@ alias l='ls'
 alias rm="rm -iv"
 alias 'cd..=cd ..'
 
+alias cmakedebug='cmake $1 -DCMAKE_BUILD_TYPE=DEBUG'
+alias cmakerelease='cmake $1 -DCMAKE_BUILD_TYPE=RELEASE'
+
 
 # prompt if running screen, show window #)
 if [ x$WINDOW != x ]; then
