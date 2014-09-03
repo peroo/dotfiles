@@ -42,32 +42,12 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 
-
-" toggle between number and relative number on ,l
-nnoremap <leader>l :call ToggleRelativeAbsoluteNumber()<CR>
-function! ToggleRelativeAbsoluteNumber()
-  if &number
-    set number!
-    :RltvNmbr
-    "set relativenumber
-  else
-    :RltvNmbr!
-    set number
-  endif
-endfunction
-
-" configure tags - add additional tags here or comment out not-used ones
-set tags=./tags,./../tags,./*/tags
-set tags+=~/.vim/tags/cpp
-
-map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-
 " REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
 filetype plugin on
 "
 " " IMPORTANT: win32 users will need to have 'shellslash' set so that latex
 " " can be called correctly.
-set shellslash
+"set shellslash
 "
 " " IMPORTANT: grep will sometimes skip displaying the file name if you
 " " search in a singe file. This will confuse Latex-Suite. Set your grep
@@ -142,7 +122,10 @@ endfunction
 au InsertEnter * call InsertStatuslineColor(v:insertmode)
 au InsertLeave * hi StatColor guibg=#95e454 guifg=black ctermbg=lightgreen ctermfg=black
 
+execute pathogen#infect()
 map <F4> :NERDTreeToggle<CR>
-
-call pathogen#infect()
 let g:EasyMotion_leader_key = '<Leader>'
+let g:tagbar_type_javascript = { 'ctagsbin' : 'C:\Program Files\nodejs\jsctags.cmd' }
+nmap <F8> :TagbarToggle<CR>
+
+let g:syntastic_javascript_checkers = ['jsxhint']
