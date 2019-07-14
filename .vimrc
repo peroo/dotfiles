@@ -1,3 +1,39 @@
+call plug#begin('~/.vim/plugged')
+Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdcommenter'
+Plug 'myusuf3/numbers.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-easymotion.vim'
+call plug#end()
+
+set nobackup
+set nowritebackup
+set cmdheight=2
+set hidden
+set updatetime=300
+set signcolumn=yes
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+ 
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+ 
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 set nocompatible 
 set modelines=0
 filetype plugin indent on
@@ -22,7 +58,6 @@ set ttyfast " Fast terminal, send all data
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
-set hidden
 
 let mapleader = ","
 
@@ -38,34 +73,14 @@ set showmatch
 set hlsearch
 " Clear search highlight
 nnoremap <leader><space> :noh<cr>
-" Use tab to match bracket pairs instead of %
-nnoremap <tab> %
-vnoremap <tab> %
 
-" REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
-filetype plugin on
-"
-" " IMPORTANT: win32 users will need to have 'shellslash' set so that latex
-" " can be called correctly.
-"set shellslash
-"
-" " IMPORTANT: grep will sometimes skip displaying the file name if you
-" " search in a singe file. This will confuse Latex-Suite. Set your grep
-" " program to always generate a file-name.
-set grepprg=grep\ -nH\ $*
 "
 " " OPTIONAL: This enables automatic indentation as you type.
 filetype indent on
 "
-" " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults
-" to
-" " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" " The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
 
 set scrolloff=999
 imap jj <ESC>
-nnoremap <leader>f :NERDTreeToggle<cr>
 inoremap  <Up>     <NOP>
 inoremap  <Down>   <NOP>
 inoremap  <Left>   <NOP>
@@ -122,10 +137,29 @@ endfunction
 au InsertEnter * call InsertStatuslineColor(v:insertmode)
 au InsertLeave * hi StatColor guibg=#95e454 guifg=black ctermbg=lightgreen ctermfg=black
 
-execute pathogen#infect()
 map <F4> :NERDTreeToggle<CR>
-let g:EasyMotion_leader_key = '<Leader>'
-let g:tagbar_type_javascript = { 'ctagsbin' : 'C:\Program Files\nodejs\jsctags.cmd' }
-nmap <F8> :TagbarToggle<CR>
 
-let g:syntastic_javascript_checkers = ['jsxhint']
+" EASYMOTION CONFIG
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap s <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+" /EASYMOTION CONFIG
+
+" INCSEARCH
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+" /INCSEARCH

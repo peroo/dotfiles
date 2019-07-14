@@ -99,4 +99,22 @@ function preexec() {
   title "$1" "$USER@%m" "%35<...<%~"
 }
 
+if [ -d "$HOME/go" ] ; then
+    export GOPATH="$HOME/go"
+fi
 
+if [ -d "$HOME/go/bin" ] ; then
+    PATH="$HOME/go/bin:$PATH"
+fi
+
+
+PATH=$PATH:$HOME/AndroidSDK:$HOME/AndroidSDK/tools
+export PATH
+
+# For SDK version r_08 and higher, also add this for adb:
+PATH=$PATH:$HOME/AndroidSDK/platform-tools
+export PATH
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
