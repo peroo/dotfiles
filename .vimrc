@@ -6,6 +6,10 @@ Plug 'myusuf3/numbers.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
+" Typescript syntax highlighting
+Plug 'HerringtonDarkholme/yats.vim'
+" Javascript syntax highlighting
+Plug 'jelera/vim-javascript-syntax'
 call plug#end()
 
 set nobackup
